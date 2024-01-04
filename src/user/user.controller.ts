@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Session, HttpCode } from '@nestjs/common';
+import { Controller, Post, Body, Session, HttpCode, HttpException } from '@nestjs/common';
 import { UserService } from './user.service';
 // import { CreateUserDto } from './dto/create-user.dto';
 // import { UpdateUserDto } from './dto/update-user.dto';
@@ -85,10 +85,12 @@ export class UserController {
         session.user = {
           username: foundUser.username,
         };
+      } else {
+        throw new HttpException('密码错误', 200)
       }
       return 'ok';
     } catch (e) {
-      console.log(e.message, 'message');
+      throw new HttpException(e.message, 200)
     }
   }
 }

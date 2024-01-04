@@ -5,7 +5,7 @@ import { UpdateADto } from './dto/update-a.dto';
 @Injectable()
 export class AService {
   create(createADto: CreateADto) {
-    return 'This action adds a new a';
+    return '请求成功!';
   }
 
   findAll() {

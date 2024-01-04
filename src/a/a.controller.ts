@@ -9,6 +9,7 @@ import {
   UseGuards,
   Session,
   Headers,
+  SetMetadata,
 } from '@nestjs/common';
 import { AService } from './a.service';
 import { CreateADto } from './dto/create-a.dto';
@@ -19,11 +20,10 @@ import { PermissionGuard } from '../permission/permission.guard';
 export class AController {
   constructor(private readonly aService: AService) {}
 
-  @UseGuards(LoginGuard)
-  @UseGuards(PermissionGuard)
+  @UseGuards(LoginGuard, PermissionGuard)
+  @SetMetadata('permission', ['remove_a', 'create_a'])
   @Post()
   create(@Body() createADto: CreateADto) {
-    console.log('🚀 ~ file: a.cotroller.ts:13:', createADto);
     return this.aService.create(createADto);
   }
 

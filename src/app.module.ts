@@ -6,11 +6,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entity/User';
 import { Permission } from './entity/Permission';
 import { AModule } from './a/a.module';
+import { RedisModule } from './redis/redis.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      database: 'ACL',
+      database: 'project',
       password: '123456',
       username: 'root',
       port: 3306,
@@ -25,6 +26,7 @@ import { AModule } from './a/a.module';
     }),
     UserModule,
     AModule,
+    RedisModule,
   ],
   controllers: [AppController],
   providers: [AppService],

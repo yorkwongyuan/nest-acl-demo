@@ -15,11 +15,9 @@ export class UserService {
     const foundUser = await this.userRep.findOneBy({
       username: loginData.username,
     });
-
     if (!foundUser) {
       throw new HttpException('用户不存在', 200);
     }
-
     return foundUser;
   }
 
